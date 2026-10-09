@@ -16,8 +16,12 @@ pygame.mixer.init()
 screen = pygame.display.set_mode((1000, 600))
 pygame.display.set_caption("Pet The Kitty")
 
-x=506
-y=672
+
+bg = pygame.image.load(r"assets\ptk background.png")
+bg_large = pygame.transform.scale(bg, (1000, 600))
+
+x=605
+y=806.5
 cat = pygame.image.load(r"assets\cat_idle.png").convert_alpha()
 cat_large = pygame.transform.scale(cat, (x, y))
 
@@ -36,7 +40,7 @@ current_cat_image = cat_large
 meow = [cat_meow1_large, cat_meow2_large]
 
 
-cat_pos = (225, 0)
+cat_pos = (155, -100)
 rect = cat_large.get_rect(topleft=cat_pos)
 
 clock = pygame.time.Clock()
@@ -77,7 +81,7 @@ while running:
     if not pygame.mixer.get_busy():
         current_cat_image = cat_large
 
-    screen.fill((143, 0, 143))
+    screen.blit(bg_large,(0,0))
     screen.blit(current_cat_image, cat_pos)
     pygame.display.flip()
     clock.tick(60)
