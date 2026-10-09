@@ -16,12 +16,27 @@ pygame.mixer.init()
 screen = pygame.display.set_mode((1000, 600))
 pygame.display.set_caption("Pet The Kitty")
 
-x=450
-y=450
-cat = pygame.image.load(r"assets\cat2.png").convert_alpha()
+x=506
+y=672
+cat = pygame.image.load(r"assets\cat_idle.png").convert_alpha()
 cat_large = pygame.transform.scale(cat, (x, y))
 
-cat_pos = (275, 75)
+
+cat_purr = pygame.image.load(r"assets\cat_purr.png").convert_alpha()
+cat_purr_large = pygame.transform.scale(cat_purr, (x, y))
+
+cat_meow1 = pygame.image.load(r"assets\cat_meow1.png").convert_alpha()
+cat_meow1_large = pygame.transform.scale(cat_meow1,(x, y))
+
+cat_meow2 = pygame.image.load(r"assets\cat_meow2.png").convert_alpha()
+cat_meow2_large = pygame.transform.scale(cat_meow2,(x, y))
+
+current_cat_image = cat_large
+
+meow = [cat_meow1_large, cat_meow2_large]
+
+
+cat_pos = (225, 0)
 rect = cat_large.get_rect(topleft=cat_pos)
 
 clock = pygame.time.Clock()
@@ -51,10 +66,19 @@ while running:
 
         elif event.type == MOUSEBUTTONDOWN:
             if rect.collidepoint(event.pos):
-                random.choice(sounds).play()
+                reaction = random.choice(sound_list)
+                sound_index = sound_list.index(reaction)
+                if reaction in [r"sounds\cropped\purr1.mp3", r"sounds\cropped\purr2.mp3"]:
+                    current_cat_image = cat_purr_large
+                elif reaction in [r"sounds\cropped\meow1.mp3", r"sounds\cropped\meow2.mp3", r"sounds\cropped\meow3.mp3", r"sounds\cropped\meow4.mp3"]:
+                    current_cat_image = random.choice(meow)
+                sounds[sound_index].play()
+
+    if not pygame.mixer.get_busy():
+        current_cat_image = cat_large
 
     screen.fill((143, 0, 143))
-    screen.blit(cat_large, cat_pos)
+    screen.blit(current_cat_image, cat_pos)
     pygame.display.flip()
     clock.tick(60)
     pygame.display.update()
