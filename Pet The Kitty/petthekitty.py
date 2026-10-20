@@ -13,15 +13,15 @@ from pygame.locals import *
 
 pygame.init()
 pygame.mixer.init()
-screen = pygame.display.set_mode((1000, 600))
+screen = pygame.display.set_mode((1200, 700))
 pygame.display.set_caption("Pet The Kitty")
 
 
 bg = pygame.image.load(r"assets\ptk background.png")
-bg_large = pygame.transform.scale(bg, (1000, 600))
+bg_large = pygame.transform.scale(bg, (1400, 900))
 
-x=605
-y=806.5
+x=1005
+y=1306.5
 cat = pygame.image.load(r"assets\cat_idle.png").convert_alpha()
 cat_large = pygame.transform.scale(cat, (x, y))
 
@@ -40,7 +40,7 @@ current_cat_image = cat_large
 meow = [cat_meow1_large, cat_meow2_large]
 
 
-cat_pos = (155, -100)
+cat_pos = (75, -250)
 rect = cat_large.get_rect(topleft=cat_pos)
 
 clock = pygame.time.Clock()
