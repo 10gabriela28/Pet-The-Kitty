@@ -74,8 +74,10 @@ while running:
                 sound_index = sound_list.index(reaction)
                 if reaction in [r"sounds\cropped\purr1.mp3", r"sounds\cropped\purr2.mp3"]:
                     current_cat_image = cat_purr_large
-                elif reaction in [r"sounds\cropped\meow1.mp3", r"sounds\cropped\meow2.mp3", r"sounds\cropped\meow3.mp3", r"sounds\cropped\meow4.mp3"]:
+                elif reaction in [r"sounds\cropped\meow3.mp3"]:
                     current_cat_image = random.choice(meow)
+                elif reaction in [r"sounds\cropped\meow1.mp3", r"sounds\cropped\meow2.mp3", r"sounds\cropped\meow3.mp3", r"sounds\cropped\meow4.mp3"]:
+                    current_cat_image = meow[0]
                 sounds[sound_index].play()
 
     if not pygame.mixer.get_busy():
